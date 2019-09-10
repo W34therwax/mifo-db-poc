@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{user} {
+      // will be gated
+      allow read, write: if true;
+    }
+
+    // this rule is needed for collection group queries = query all 'abilities' collections, no matter where those are in db structure
+    match /{path=**}/abilities/{ability} {
+      // will be gated for admin users only, now open for everyone
+      allow read, write: if true;
+    }
+    match /customers/{customer} {
+      match /objects/{object} {
+        function hasAbility(ability) {                                                                 // $(request.auth.uid) instead of hardcoded 'uniqueAuthUid'
+          return exists(/databases/$(database)/documents/customers/$(customer)/objects/$(object)/metaUsers/uniqueAuthUid/abilities/$(ability));
+        }
+        allow read: if hasAbility('createChecklist');
+      }
+    }
+  }
+}

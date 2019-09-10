@@ -1,0 +1,17 @@
+{
+  "name": "mifo-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "firebase deploy",
+    "seed-firestore": "node ./src/seed.js",
+    "purge-firestore": "firebase firestore:delete --all-collections"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^6.6.0",
+    "firebase-admin": "^8.5.0"
+  }
+}
