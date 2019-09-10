@@ -46,3 +46,11 @@ That complicated path is then used for easy gating of access to firestore resour
       }
     }
 ```
+
+I have trying to prove that this structure will work for our usecases and in src/roles.js file there is script that will delete role ('observer') from firestore db
+
+In src/security.js file there is script that simulate read of given object and make use of roles to gate access.
+
+Feel free to toy with those scripts and test them, to see how it works.
+
+Just run them like `node ./src/roles.js`
