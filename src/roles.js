@@ -11,7 +11,7 @@ const db = firebase.firestore();
 
 // STEPS WHEN ROLE IS EDITED / DELETED
 console.log("EXAMPLE - admin delete owner role");
-const roleToBeDeleted = "observer";
+const roleToBeDeleted = "owner";
 // get all abilities that were granted by role 'owner'
 db.collectionGroup("abilities")
   .where("rolesIds", "array-contains", roleToBeDeleted)
